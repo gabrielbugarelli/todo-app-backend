@@ -10,7 +10,7 @@ export class TodoEntity {
   task:string
 
   @Column({name: 'is_done', type:'tinyint', width: 1})
-  idDone: number
+  isDone: number
 
   @CreateDateColumn({name: 'created_at'})
   createdAt: string
