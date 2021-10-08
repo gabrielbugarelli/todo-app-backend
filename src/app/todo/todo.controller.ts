@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
-import { TodoEntity } from './entity/todo.entity';
+import { CreateTodoDto } from './dto/create-todo.dto';
+import { UpdateTodoDto } from './dto/update-todo.dto';
 import { TodoService } from './todo.service';
 
 @Controller('todo')
@@ -21,12 +22,12 @@ export class TodoController {
 
   @Post()
   @HttpCode(201)
-  async create (@Body() body: TodoEntity) {
+  async create (@Body() body: CreateTodoDto) {
     return await this.todoService.create(body)
   }
 
   @Put('id/:id')
-  async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() body: TodoEntity) {
+  async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() body: UpdateTodoDto) {
     await this.todoService.update(id, body)
   }
 
